@@ -1,0 +1,4 @@
+Copy message modal from FridgeApp
+Implement message Modal with the SpotifyAuth message
+create profile view at the navbar. ✔
+Work on making the SpotifyAuth show the profile immediately not afterclicking the button again.
