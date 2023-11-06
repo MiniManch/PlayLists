@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import css from '../Style/SpotifyAuth.module.css';
 
+import SpotifyProfile from './SpotifyProfile';
+
 const SpotifyAuthComponent = () => {
   const [userAuthCode, setUserAuthCode] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
@@ -43,9 +45,9 @@ const SpotifyAuthComponent = () => {
       const fetchAccessToken = async () => {
         try {
           const response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER_URL}/auth/spotify-callback?code=${userAuthCode}`);
-          
+          const data = await response.json();
+          console.log(data);
           if (response.ok) {
-            const data = await response.json();
             setAccessToken(data.token); // Set the accessToken state
             localStorage.setItem('access_token', data.token); // Save accessToken to localStorage
           } else {
@@ -58,14 +60,21 @@ const SpotifyAuthComponent = () => {
 
       fetchAccessToken();
     }
-  }, [userAuthCode,userAuthCode]);
+  }, [userAuthCode]);
 
   return (
-    <div>
-      <button className={css.spotify_button} onClick={handleSpotifyAuth}>
-        Authorize with Spotify
-      </button>
-    </div>
+    <>
+      {!accessToken ? 
+        <div>
+          <button className={css.spotify_button} onClick={handleSpotifyAuth}>
+            Authorize with Spotify
+          </button>
+        </div>
+        :
+        <SpotifyProfile />
+      }
+      
+    </>
   );
 };
 
