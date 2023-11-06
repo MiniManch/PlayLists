@@ -1,0 +1,16 @@
+.artist_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 10vw;
+    margin-top: 1vh;
+    padding-bottom: 0.5vh;
+    border-bottom: 1px solid black; /* Add a black line under each artist */
+}
+
+.artist_image {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin-left: 2vh;
+}
