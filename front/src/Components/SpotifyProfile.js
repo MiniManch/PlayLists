@@ -19,6 +19,8 @@ const SpotifyProfile = () => {
                     setUserData(userData);
                 } else {
                     console.error('Failed to fetch user profile');
+                    localStorage.removeItem('user_auth_code');
+                    localStorage.removeItem('access_token');
                 }
             } catch (error) {
                 console.error('Error fetching user profile:', error);

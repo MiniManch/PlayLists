@@ -45,9 +45,10 @@ const SpotifyApp = () => {
     if (userAuthCode) {
       const fetchAccessToken = async () => {
         try {
-          const response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER_URL}/auth/spotify-callback?code=${userAuthCode}`);
+          const encodedCode = encodeURIComponent(userAuthCode);
+          console.log(encodedCode);
+          const response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER_URL}/auth/spotify-callback?code=${encodedCode}`);
           const data = await response.json();
-          console.log(data);
           if (response.ok) {
             setAccessToken(data.token); // Set the accessToken state
             localStorage.setItem('access_token', data.token); // Save accessToken to localStorage

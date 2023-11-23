@@ -1,0 +1,10 @@
+.tracksContainer {
+    position: absolute;
+    margin-left:2vw;
+    margin-top:-5vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #1DB954;
+    border-radius: 10px;
+    overflow: hidden;
+}
