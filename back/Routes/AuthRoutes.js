@@ -2,24 +2,19 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
+const clientId = process.env.SPOTIFY_CLIENT_ID; // Fetch from environment variables
+const clientSecret = process.env.SPOTFY_CLIENT_SECRET; // Fetch from environment variables
+const redirectUri = process.env.HOME_URL; // Fetch from environment variables
+
 router.post('/get-access', async (req, res) => {
-  const clientId = process.env.SPOTIFY_CLIENT_ID; // Fetch from environment variables
-  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET; // Fetch from environment variables
-  const redirectUri = process.env.HOME_URL; // Fetch from environment variables
-  const scopes = encodeURIComponent('user-read-private user-read-email'); // Define scopes as needed
-
+  const scopes = encodeURIComponent('user-read-private user-read-email user-top-read'); // Define scopes as needed
   const authURL = `https://accounts.spotify.com/authorize?response_type=code&client_id=${clientId}&scope=${scopes}&redirect_uri=${redirectUri}`;
-
   res.status(200).json({ authURL });
 });
 
 router.get('/spotify-callback', async (req, res) => {
   const authorizationCode = req.query.code; // Received authorization code from Spotify
-
-  const clientId = process.env.SPOTIFY_CLIENT_ID; // Fetch from environment variables
-  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET; // Fetch from environment variables
-  const redirectUri = process.env.HOME_URL; // Fetch from environment variables
-
+  console.log(authorizationCode);
   const data = {
     grant_type: 'authorization_code',
     code: authorizationCode,
@@ -41,11 +36,13 @@ router.get('/spotify-callback', async (req, res) => {
       const responseData = await response.json();
       const accessToken = responseData.access_token;
 
-      res.status(200).json({ token: accessToken }); // Send accessToken in response
+      res.status(200).json({ token: accessToken }); 
     } else {
       res.status(response.status).json({ error: 'Failed to obtain access token' });
     }
   } catch (error) {
+    const data = await response.json();
+    console.log(data);
     console.error('Error during access token request:', error);
     res.status(500).json({ error: 'Failed to obtain access token from Spotify' });
   }
