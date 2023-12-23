@@ -3,6 +3,7 @@ import css from '../Style/SpotifyApp.module.css';
 import SpotifyAuth from './SpotifyAuth';
 import SpotifyProfile from './SpotifyProfile';
 import TopArtists from './Artists/TopArtists';
+import GenreContainer from './Genres/GenreContainer';
 
 const SpotifyApp = () => {
   const [userAuthCode, setUserAuthCode] = useState(null);
@@ -74,6 +75,7 @@ const SpotifyApp = () => {
         <div>
           <SpotifyProfile/>
           <TopArtists />
+          <GenreContainer/>
         </div>
       }
     </>

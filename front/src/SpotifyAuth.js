@@ -18,7 +18,6 @@ const SpotifyAuthComponent = () => {
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }, []);
-  
 
   const handleSpotifyAuth = async () => {
     try {
@@ -41,7 +40,6 @@ const SpotifyAuthComponent = () => {
     }
   };
 
-  // Check for userAuthCode and initiate the request to obtain the access token
   useEffect(() => {
     if (userAuthCode) {
       const fetchAccessToken = async () => {

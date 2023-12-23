@@ -13,7 +13,6 @@ function verifyToken(req, res, next) {
       return res.status(403).json({ error: 'Failed to authenticate token' });
     }
 
-    // Attach the decoded user ID to the request for use in your routes
     req.userId = decoded.userId;
     next();
   });

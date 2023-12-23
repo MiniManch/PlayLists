@@ -1,0 +1,33 @@
+.genre_box {
+    background-color: black;
+    color: white;
+    border: 2px solid #00ff00; /* Green border */
+    border-radius: 10px; /* Adjust the radius to your liking for rounded corners */
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    max-width: 20vw;
+    max-height:40vh;
+  }
+  
+  .genre_box:hover {
+    background-color: #00ff00; /* Green background on hover */
+  }
+  
+  .selected_genre {
+    background-color: #00ff00; /* Green background for the selected genre */
+    color: black; /* Adjust the text color for better visibility */
+  }
+  
+  .genreContainer {
+    text-align: center;
+    margin: 10px;
+  }
+  
+  .genreImage {
+    width: 10vw; 
+    height: 20vh;
+    border-radius: 50%; /* Make the image round */
+  }
+  
