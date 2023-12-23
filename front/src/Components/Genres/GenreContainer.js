@@ -82,25 +82,29 @@ const Genres = () => {
         {!openGenres ? (
           <button onClick={getGenres}>Genres</button>
         ) : (
-          <div className={style.genreContainer}>
-            {genres.map((genre, index) => (
-              <Genre
-                key={`${genre.id}_${index}`}
-                data={{
-                  genre: genre,
-                  handleGenreClick: handleGenreClick,
-                  index: index,
-                  selectedGenre: selectedGenre,
-                }}
-              />
-            ))}
+          <div className={style.genreContainerContainer}>
+            <div className={style.genreContainer}>
+              {genres.map((genre, index) => (
+                <Genre
+                  key={`${genre.id}_${index}`}
+                  data={{
+                    genre: genre,
+                    handleGenreClick: handleGenreClick,
+                    index: index,
+                    selectedGenre: selectedGenre,
+                  }}
+                />
+              ))}
+              {hasMoreCategories && (
+              <button className={style.loadMore} onClick={loadMoreCategories}>
+                Load More
+              </button>
+            )}
+            </div>
           </div>
+
         )}
-        {hasMoreCategories && (
-          <button className={style.loadMore} onClick={loadMoreCategories}>
-            Load More
-          </button>
-        )}
+        
       </div>
     </>
   );

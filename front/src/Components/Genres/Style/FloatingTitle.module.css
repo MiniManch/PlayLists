@@ -1,0 +1,16 @@
+.container {
+  /* position: relative; */
+}
+
+h1 {
+  margin: 0;
+}
+
+.floatingTitle {
+  width: 100%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+}
+
